@@ -1,32 +1,17 @@
-import { Todo } from "../../../types/todo.types";
+import { useAtomValue, useSetAtom } from "jotai";
+
+import { editIdAtom } from "../../../atoms/editIdAtom";
+import { todosAtom } from "../../../atoms/todosAtom";
 import TodoListItem from "./TodoListItem";
 
 interface TodoListProps {
-  todos: Todo[];
-  setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
-  setEditId: React.Dispatch<React.SetStateAction<number | null>>;
   setInputValue: React.Dispatch<React.SetStateAction<string>>;
   inputRef: React.RefObject<HTMLInputElement | null>;
 }
 
-const TodoList = ({
-  todos,
-  setTodos,
-  setEditId,
-  setInputValue,
-  inputRef,
-}: TodoListProps) => {
-  const handleToggleDone = (id: number) => {
-    setTodos(
-      todos.map((todo) =>
-        todo.id === id ? { ...todo, done: !todo.done } : todo
-      )
-    );
-  };
-
-  const handleDelete = (id: number) => {
-    setTodos(todos.filter((todo) => todo.id !== id));
-  };
+const TodoList = ({ setInputValue, inputRef }: TodoListProps) => {
+  const todos = useAtomValue(todosAtom);
+  const setEditId = useSetAtom(editIdAtom);
 
   const handleEdit = (id: number, text: string) => {
     setEditId(id);
@@ -37,13 +22,7 @@ const TodoList = ({
   return (
     <div className="w-full">
       {todos.map((todo) => (
-        <TodoListItem
-          key={todo.id}
-          todo={todo}
-          handleToggleDone={handleToggleDone}
-          handleDelete={handleDelete}
-          handleEdit={handleEdit}
-        />
+        <TodoListItem key={todo.id} todo={todo} handleEdit={handleEdit} />
       ))}
     </div>
   );

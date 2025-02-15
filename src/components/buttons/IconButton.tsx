@@ -26,8 +26,9 @@ const IconButton: FC<IconButtonProps> = ({
             variant === "submit",
           "p-4 text-2xl bg-red-500 text-white hover:bg-red-800 rounded-lg focus:outline-none":
             variant === "delete",
-          "p-2 text-xl text-red-500 hover:text-red-800": variant === "danger",
-          "p-2 text-xl text-yellow-500 hover:text-yellow-800 disabled:text-gray-400":
+          "p-1 text-xl text-red-500 hover:text-red-800 disabled:text-gray-400":
+            variant === "danger",
+          "p-1 text-xl text-yellow-500 hover:text-yellow-800 disabled:text-gray-400":
             variant === "default",
         },
         className

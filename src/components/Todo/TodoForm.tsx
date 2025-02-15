@@ -1,29 +1,26 @@
+import { useAtom } from "jotai";
 import { FC } from "react";
 import { LuCircleCheckBig, LuCirclePlus, LuCircleX } from "react-icons/lu";
 
-import { Todo } from "../../types/todo.types";
+import { editIdAtom } from "../../atoms/editIdAtom";
+import { todosAtom } from "../../atoms/todosAtom";
 import IconButton from "../buttons/IconButton";
 import Input from "../Input";
 
 interface TodoFormProps {
-  todos: Todo[];
-  setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
-  editId: number | null;
-  setEditId: React.Dispatch<React.SetStateAction<number | null>>;
   inputValue: string;
   setInputValue: React.Dispatch<React.SetStateAction<string>>;
   inputRef: React.RefObject<HTMLInputElement | null>;
 }
 
 const TodoForm: FC<TodoFormProps> = ({
-  todos,
-  setTodos,
-  editId,
-  setEditId,
   inputValue,
   setInputValue,
   inputRef,
 }) => {
+  const [todos, setTodos] = useAtom(todosAtom);
+  const [editId, setEditId] = useAtom(editIdAtom);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!inputValue.trim()) return;
