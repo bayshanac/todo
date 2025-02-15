@@ -1,6 +1,6 @@
-# React Chat Application
+# React Todo Application
 
-A modern chat application built with React, TypeScript, and Vite.
+A modern todo application built with React, TypeScript, and Vite.
 
 ## Prerequisites
 
@@ -12,16 +12,14 @@ A modern chat application built with React, TypeScript, and Vite.
 1. Clone the repository:
 
 ```bash
-git clone [your-repository-url]
-cd [your-project-name]
+git clone https://github.com/bayshanac/todo.git
+cd todo
 ```
 
 2. Install dependencies:
 
 ```bash
 npm install
-# or
-yarn install
 ```
 
 3. Create a `.env` file in the root directory and add necessary environment variables:
@@ -34,8 +32,6 @@ VITE_API_URL=your_api_url_here
 
 ```bash
 npm run dev
-# or
-yarn dev
 ```
 
 The application will be available at `http://localhost:5173`
@@ -46,31 +42,30 @@ The application will be available at `http://localhost:5173`
 - `npm run build` - Build for production
 - `npm run lint` - Run ESLint
 - `npm run preview` - Preview production build locally
+- `npm run test` - Run tests
 
 ## Technology Stack
 
-- React 18
+- React 19
 - TypeScript
 - Vite
 - ESLint
-- [Add other major dependencies]
+- Jotai
+- TailwindCSS
+- React Icons
 
 ## Project Structure
 
 ```
 src/
-  ├── components/    # Reusable UI components
-  ├── pages/        # Page components
-  ├── services/     # API and other services
-  ├── store/        # State management
+  ├── components/   # Reusable UI components
+  ├── atoms/        # State management
   ├── types/        # TypeScript types
-  └── utils/        # Utility functions
+  ├── utils/        # Utility functions
+  ├── assets/       # Assets
+  └── hooks/        # Custom hooks
 ```
-
-## Contributing
-
-[Add contribution guidelines if applicable]
 
 ## License
 
-[Add your license information]
+MIT
