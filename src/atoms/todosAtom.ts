@@ -20,4 +20,5 @@ const updateTodos = (
   set(todosAtom, newTodos);
 };
 
+// @ts-expect-error Expected 0-1 arguments, but got 2.
 export const todosAtom = atom<Todo[]>(getInitialTodos(), updateTodos);
