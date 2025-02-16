@@ -8,8 +8,8 @@ interface RadioButtonProps extends React.InputHTMLAttributes<HTMLInputElement> {
 
 const RadioButton: FC<RadioButtonProps> = ({ id, label, ...props }) => {
   return (
-    <div className="flex gap-2 items-start">
-      <div className="grid place-items-center mt-1">
+    <div className="flex gap-2 items-start relative">
+      <div className="grid place-items-center mt-1 absolute left-0 pointer-events-none">
         <input
           type="radio"
           id={id}
@@ -29,7 +29,7 @@ const RadioButton: FC<RadioButtonProps> = ({ id, label, ...props }) => {
           )}
         />
       </div>
-      <label htmlFor={id} className="text-start">
+      <label htmlFor={id} className="text-start pl-6">
         {label}
       </label>
     </div>
