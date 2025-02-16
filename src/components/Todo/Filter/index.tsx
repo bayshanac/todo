@@ -21,7 +21,7 @@ const Filter = () => {
       value={filter}
       name="filter"
       onChange={(value) => setFilter(value as FilterType)}
-      className="mb-4"
+      className="mb-4 pl-4"
     />
   );
 };

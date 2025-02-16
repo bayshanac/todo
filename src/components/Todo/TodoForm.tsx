@@ -6,7 +6,7 @@ import { editIdAtom } from "../../atoms/editIdAtom";
 import { todosAtom } from "../../atoms/todosAtom";
 import { useKeyPress } from "../../hooks/useKeyPress";
 import { cn } from "../../utils";
-import IconButton from "../buttons/IconButton";
+import IconButton from "../Button";
 import Input from "../Input";
 
 interface TodoFormProps {

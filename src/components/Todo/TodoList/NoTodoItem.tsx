@@ -11,7 +11,7 @@ const NoTodoItem: FC<NoTodoItemProps> = ({ className }) => {
   return (
     <div className={cn("flex items-center gap-2", className)}>
       <PiMagnifyingGlassMinusBold className="text-gray-500" size={24} />
-      <p className="text-gray-500">No todos found</p>
+      <p className="text-gray-500">No todos</p>
     </div>
   );
 };

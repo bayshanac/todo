@@ -1,12 +1,13 @@
 import { useAtom, useAtomValue } from "jotai";
-import { FC, useCallback } from "react";
+import { FC, useCallback, useState } from "react";
 import { LuPencil, LuTrash2 } from "react-icons/lu";
 
 import { editIdAtom } from "../../../atoms/editIdAtom";
 import { todosAtom } from "../../../atoms/todosAtom";
 import { Todo } from "../../../types/todo.types";
 import { cn } from "../../../utils";
-import IconButton from "../../buttons/IconButton";
+import AlertDialog from "../../AlertDialog";
+import IconButton from "../../Button";
 
 interface TodoListItemProps {
   todo: Todo;
@@ -15,6 +16,7 @@ interface TodoListItemProps {
 
 const TodoListItem: FC<TodoListItemProps> = ({ todo, handleEdit }) => {
   const [todos, setTodos] = useAtom(todosAtom);
+  const [isOpen, setIsOpen] = useState(false);
   const editId = useAtomValue(editIdAtom);
   const isEditing = editId === todo.id;
 
@@ -39,48 +41,60 @@ const TodoListItem: FC<TodoListItemProps> = ({ todo, handleEdit }) => {
   );
 
   return (
-    <div
-      className={cn(
-        "flex items-center justify-between content-stretch px-4 py-3 mb-2 bg-white hover:bg-gray-50 rounded-lg shadow",
-        { "bg-gray-200 hover:bg-gray-200": todo.done, "opacity-60": isEditing }
-      )}
-    >
-      <button
-        className={cn("flex items-center flex-1 gap-3 cursor-pointer")}
-        onClick={() => handleToggleDone(todo.id)}
+    <>
+      <div
+        className={cn(
+          "flex items-center justify-between content-stretch px-4 py-3 mb-2 bg-white hover:bg-gray-50 rounded-lg shadow",
+          {
+            "bg-gray-200 hover:bg-gray-200": todo.done,
+            "opacity-60": isEditing,
+          }
+        )}
       >
-        <input
-          type="checkbox"
-          checked={todo.done}
-          onChange={() => handleToggleDone(todo.id)}
-          className="w-5 h-5 cursor-pointer text-green-500"
-          disabled={isEditing}
-          tabIndex={-1}
-        />
-        <span
-          className={cn("flex-1 text-left", {
-            "line-through text-gray-500": todo.done,
-            "text-gray-500 cursor-not-allowed": isEditing,
-          })}
-          tabIndex={-1}
+        <button
+          className={cn("flex items-center flex-1 gap-3 cursor-pointer")}
+          onClick={() => handleToggleDone(todo.id)}
         >
-          {todo.text}
-        </span>
-      </button>
-      <div className="flex gap-2">
-        <IconButton
-          icon={<LuPencil />}
-          onClick={() => handleEdit(todo.id, todo.text)}
-          {...((todo.done || isEditing) && { disabled: true })}
-        />
-        <IconButton
-          icon={<LuTrash2 />}
-          onClick={() => handleDelete(todo.id)}
-          {...(isEditing && { disabled: true })}
-          variant="danger"
-        />
+          <input
+            type="checkbox"
+            checked={todo.done}
+            onChange={() => handleToggleDone(todo.id)}
+            className="w-5 h-5 cursor-pointer text-green-500"
+            disabled={isEditing}
+            tabIndex={-1}
+          />
+          <span
+            className={cn("flex-1 text-left", {
+              "line-through text-gray-500": todo.done,
+              "text-gray-500 cursor-not-allowed": isEditing,
+            })}
+            tabIndex={-1}
+          >
+            {todo.text}
+          </span>
+        </button>
+        <div className="flex gap-2">
+          <IconButton
+            icon={<LuPencil />}
+            onClick={() => handleEdit(todo.id, todo.text)}
+            {...((todo.done || isEditing) && { disabled: true })}
+          />
+          <IconButton
+            icon={<LuTrash2 />}
+            onClick={() => setIsOpen(true)}
+            {...(isEditing && { disabled: true })}
+            variant="danger"
+          />
+        </div>
       </div>
-    </div>
+      <AlertDialog
+        isOpen={isOpen}
+        title="Delete Todo"
+        description="Are you sure you want to delete this todo?"
+        onCancel={() => setIsOpen(false)}
+        onConfirm={() => handleDelete(todo.id)}
+      />
+    </>
   );
 };
 
