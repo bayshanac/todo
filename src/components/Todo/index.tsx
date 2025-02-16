@@ -4,7 +4,7 @@ import AppWrapper from "../AppWrapper";
 import TodoForm from "./TodoForm";
 import TodoList from "./TodoList";
 import TodoTitle from "./TodoTitle";
-
+import Filter from "./Filter";
 const TodoApp = () => {
   const [inputValue, setInputValue] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
@@ -17,7 +17,10 @@ const TodoApp = () => {
         inputValue={inputValue}
         setInputValue={setInputValue}
         inputRef={inputRef}
+        className="mb-6"
       />
+
+      <Filter />
 
       <TodoList setInputValue={setInputValue} inputRef={inputRef} />
     </AppWrapper>

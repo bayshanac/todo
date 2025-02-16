@@ -22,9 +22,9 @@ const IconButton: FC<IconButtonProps> = ({
       className={cn(
         "focus:ring-2 focus:ring-blue-500 cursor-pointer disabled:cursor-not-allowed",
         {
-          "p-4 text-2xl bg-green-600 text-white rounded-lg hover:bg-green-800 focus:outline-none":
+          "p-4 text-2xl bg-green-600 text-white rounded-lg hover:bg-green-800 focus:outline-none disabled:bg-gray-300":
             variant === "submit",
-          "p-4 text-2xl bg-red-500 text-white hover:bg-red-800 rounded-lg focus:outline-none":
+          "p-4 text-2xl bg-red-500 text-white hover:bg-red-800 rounded-lg focus:outline-none disabled:bg-gray-300":
             variant === "delete",
           "p-1 text-xl text-red-500 hover:text-red-800 disabled:text-gray-400":
             variant === "danger",

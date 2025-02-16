@@ -5,6 +5,7 @@ import { LuCircleCheckBig, LuCirclePlus, LuCircleX } from "react-icons/lu";
 import { editIdAtom } from "../../atoms/editIdAtom";
 import { todosAtom } from "../../atoms/todosAtom";
 import { useKeyPress } from "../../hooks/useKeyPress";
+import { cn } from "../../utils";
 import IconButton from "../buttons/IconButton";
 import Input from "../Input";
 
@@ -12,12 +13,14 @@ interface TodoFormProps {
   inputValue: string;
   setInputValue: React.Dispatch<React.SetStateAction<string>>;
   inputRef: React.RefObject<HTMLInputElement | null>;
+  className?: string;
 }
 
 const TodoForm: FC<TodoFormProps> = ({
   inputValue,
   setInputValue,
   inputRef,
+  className,
 }) => {
   const [todos, setTodos] = useAtom(todosAtom);
   const [editId, setEditId] = useAtom(editIdAtom);
@@ -44,8 +47,9 @@ const TodoForm: FC<TodoFormProps> = ({
         setTodos([...todos, { id: Date.now(), text: inputValue, done: false }]);
       }
       setInputValue("");
+      inputRef?.current?.focus();
     },
-    [editId, inputValue, setEditId, setInputValue, setTodos, todos]
+    [editId, inputRef, inputValue, setEditId, setInputValue, setTodos, todos]
   );
 
   const handleCancelEdit = useCallback(() => {
@@ -57,7 +61,7 @@ const TodoForm: FC<TodoFormProps> = ({
   useKeyPress("Escape", handleCancelEdit);
 
   return (
-    <form onSubmit={handleSubmit} className="w-full mb-8">
+    <form onSubmit={handleSubmit} className={cn("w-full", className)}>
       <div className="flex gap-2">
         <Input
           ref={inputRef}
@@ -70,6 +74,7 @@ const TodoForm: FC<TodoFormProps> = ({
           type="submit"
           icon={editId !== null ? <LuCircleCheckBig /> : <LuCirclePlus />}
           variant="submit"
+          disabled={!inputValue.trim()}
         />
         {editId ? (
           <IconButton

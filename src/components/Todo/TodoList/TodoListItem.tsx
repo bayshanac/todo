@@ -55,12 +55,14 @@ const TodoListItem: FC<TodoListItemProps> = ({ todo, handleEdit }) => {
           onChange={() => handleToggleDone(todo.id)}
           className="w-5 h-5 cursor-pointer text-green-500"
           disabled={isEditing}
+          tabIndex={-1}
         />
         <span
           className={cn("flex-1 text-left", {
             "line-through text-gray-500": todo.done,
             "text-gray-500 cursor-not-allowed": isEditing,
           })}
+          tabIndex={-1}
         >
           {todo.text}
         </span>
