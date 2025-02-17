@@ -1,8 +1,9 @@
-import { renderHook, act } from "@testing-library/react";
-import { beforeEach, describe, expect, test, vi } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 
-import useLocalStorage from "./useLocalStorage";
+import { act, renderHook } from "@testing-library/react";
+
 import { Todo } from "../types/todo.types";
+import useLocalStorage from "./useLocalStorage";
 
 describe("useLocalStorage", () => {
   const mockStorage: { [key: string]: string } = {};
@@ -17,7 +18,7 @@ describe("useLocalStorage", () => {
     Object.keys(mockStorage).forEach((key) => delete mockStorage[key]);
   });
 
-  test("Should initialize with default value when localStorage is empty", () => {
+  it("should initialize with default value when localStorage is empty", () => {
     const { result } = renderHook(() => useLocalStorage("testKey", "default"));
 
     expect(result.current[0]).toBe("default");
@@ -27,7 +28,7 @@ describe("useLocalStorage", () => {
     );
   });
 
-  test("Should load existing value from localStorage", () => {
+  it("should load existing value from localStorage", () => {
     localStorage.setItem("testKey", JSON.stringify("stored value"));
 
     const { result } = renderHook(() => useLocalStorage("testKey", "default"));
@@ -35,7 +36,7 @@ describe("useLocalStorage", () => {
     expect(result.current[0]).toBe("stored value");
   });
 
-  test("Should update localStorage when state changes", () => {
+  it("should update localStorage when state changes", () => {
     const { result } = renderHook(() => useLocalStorage("testKey", "default"));
 
     act(() => {
@@ -49,7 +50,7 @@ describe("useLocalStorage", () => {
     );
   });
 
-  test("Should work with complex objects", () => {
+  it("should work with complex objects", () => {
     const defaultValue: Todo[] = [{ id: 1, text: "test", done: false }];
     const { result } = renderHook(() =>
       useLocalStorage("testKey", defaultValue)
