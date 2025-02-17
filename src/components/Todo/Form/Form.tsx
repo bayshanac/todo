@@ -1,5 +1,5 @@
 import { useAtom } from "jotai";
-import { FC, useCallback, useState } from "react";
+import { FC, useCallback } from "react";
 import { LuCircleCheckBig, LuCirclePlus, LuCircleX } from "react-icons/lu";
 
 import { editIdAtom } from "../../../atoms/editIdAtom";
@@ -24,15 +24,12 @@ const Form: FC<FormProps> = ({
 }) => {
   const [todos, setTodos] = useAtom(todosAtom);
   const [editId, setEditId] = useAtom(editIdAtom);
-  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = useCallback(
     (e: React.FormEvent) => {
       e.preventDefault();
-      setError(null);
 
       if (!inputValue.trim()) {
-        setError("Todo cannot be empty");
         return;
       }
 
@@ -61,32 +58,35 @@ const Form: FC<FormProps> = ({
   useKeyPress("Escape", handleCancelEdit);
 
   return (
-    <form onSubmit={handleSubmit} className={cn("w-full", className)}>
-      <div className="flex gap-2">
-        <Input
-          ref={inputRef}
-          inputValue={inputValue}
-          setInputValue={setInputValue}
-          placeholder="Add a new todo..."
-          data-testid="input-field"
-        />
+    <form
+      onSubmit={handleSubmit}
+      className={cn("w-full flex gap-2", className)}
+    >
+      <Input
+        name="add-todo"
+        label="Add Todo"
+        ref={inputRef}
+        value={inputValue}
+        setInputValue={setInputValue}
+        placeholder="Add a new todo..."
+        data-testid="input-field"
+      />
 
+      <IconButton
+        type="submit"
+        icon={editId !== null ? <LuCircleCheckBig /> : <LuCirclePlus />}
+        size="lg"
+        disabled={!inputValue.trim()}
+        data-testid="submit-button"
+      />
+      {editId ? (
         <IconButton
-          type="submit"
-          icon={editId !== null ? <LuCircleCheckBig /> : <LuCirclePlus />}
-          variant="submit"
-          disabled={!inputValue.trim()}
-          data-testid="submit-button"
+          icon={<LuCircleX />}
+          variant="delete"
+          onClick={handleCancelEdit}
+          size="lg"
         />
-        {editId ? (
-          <IconButton
-            icon={<LuCircleX />}
-            variant="delete"
-            onClick={handleCancelEdit}
-          />
-        ) : null}
-      </div>
-      {error ? <p className="text-sm text-red-500">{error}</p> : null}
+      ) : null}
     </form>
   );
 };

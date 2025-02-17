@@ -3,7 +3,7 @@ import { useRef, useState } from "react";
 import AppWrapper from "../AppWrapper/AppWrapper";
 import Filter from "./Filter/Filter";
 import Form from "./Form/Form";
-import Title from "./Header/Header";
+import Header from "../Header/Header";
 import List from "./List/List";
 
 const TodoApp = () => {
@@ -12,7 +12,7 @@ const TodoApp = () => {
 
   return (
     <AppWrapper>
-      <Title title="Todo List" description="Add and manage your todos." />
+      <Header title="Todo List" description="Add and manage your todos." />
       <Form
         inputValue={inputValue}
         setInputValue={setInputValue}

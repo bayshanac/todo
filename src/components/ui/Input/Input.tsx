@@ -1,16 +1,18 @@
 import { FC } from "react";
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  inputValue: string;
+  label?: string;
   setInputValue: (value: string) => void;
   ref?: React.RefObject<HTMLInputElement | null>;
 }
 
 const Input: FC<InputProps> = ({
-  inputValue,
+  value,
   setInputValue,
   ref,
+  label,
   type = "text",
+  name,
   ...props
 }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -18,14 +20,21 @@ const Input: FC<InputProps> = ({
   };
 
   return (
-    <input
-      value={inputValue}
-      onChange={handleChange}
-      className="flex-1 px-4 py-2 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-      type={type}
-      {...(ref && { ref })}
-      {...props}
-    />
+    <>
+      {label ? (
+        <label htmlFor={name} className="sr-only">
+          {label}
+        </label>
+      ) : null}
+      <input
+        value={value}
+        onChange={handleChange}
+        className="w-full min-h-14 px-4 py-2 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+        type={type}
+        {...(ref && { ref })}
+        {...props}
+      />
+    </>
   );
 };
 

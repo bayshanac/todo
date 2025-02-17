@@ -1,13 +1,27 @@
 import { Provider } from "jotai";
+import { useRoutes } from "react-router";
 
-import Todo from "./components/Todo/TodoApp";
+import { ProtectedRoute } from "./components/ProtectedRoute/ProtectedRoute";
+import LoginPage from "./pages/LoginPage";
+import TodoPage from "./pages/TodoPage";
 
 function App() {
-  return (
-    <Provider>
-      <Todo />
-    </Provider>
-  );
+  const routes = useRoutes([
+    {
+      path: "/",
+      element: (
+        <ProtectedRoute>
+          <TodoPage />
+        </ProtectedRoute>
+      ),
+    },
+    {
+      path: "/login",
+      element: <LoginPage />,
+    },
+  ]);
+
+  return <Provider>{routes}</Provider>;
 }
 
 export default App;

@@ -2,12 +2,25 @@ import { Atom, atom, WritableAtom } from "jotai";
 
 import { Todo } from "../types/todo.types";
 
+const TODOS_STORAGE_KEY = "todos";
+
 // Get initial value from localStorage or default to empty array
 const getInitialTodos = () => {
-  const stored = localStorage.getItem("todos");
-  return stored ? JSON.parse(stored) : [];
+  try {
+    const stored = localStorage.getItem(TODOS_STORAGE_KEY);
+    if (stored) {
+      return JSON.parse(stored);
+    }
+    // Initialize localStorage with empty array if no value exists
+    localStorage.setItem(TODOS_STORAGE_KEY, JSON.stringify([]));
+    return [];
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
 };
 
+// Update todos in localStorage and atom
 const updateTodos = (
   _get: <Value>(atom: Atom<Value>) => Value,
   set: <Value, Args extends unknown[], Result>(
@@ -16,8 +29,12 @@ const updateTodos = (
   ) => Result,
   newTodos: Todo[]
 ) => {
-  localStorage.setItem("todos", JSON.stringify(newTodos));
-  set(todosAtom, newTodos);
+  try {
+    localStorage.setItem(TODOS_STORAGE_KEY, JSON.stringify(newTodos));
+    set(todosAtom, newTodos);
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 // @ts-expect-error Expected 0-1 arguments, but got 2.

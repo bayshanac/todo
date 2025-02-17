@@ -42,7 +42,6 @@ const AlertDialog: FC<AlertDialogProps> = ({
           <IconButton
             icon={<LuCheck />}
             onClick={onConfirm}
-            variant="submit"
             className="p-3 text-xl"
             data-testid="alert-dialog-confirm-button"
           />

@@ -79,12 +79,15 @@ const ListItem: FC<ListItemProps> = ({ todo, handleEdit }) => {
             onClick={() => handleEdit(todo.id, todo.text)}
             {...((todo.done || isEditing) && { disabled: true })}
             data-testid="edit-button"
+            variant="transparent"
+            className="text-amber-500 hover:text-amber-800"
           />
           <IconButton
             icon={<LuTrash2 />}
             onClick={() => setIsOpen(true)}
             {...(isEditing && { disabled: true })}
-            variant="danger"
+            variant="transparent"
+            className="text-red-500 hover:text-red-800"
             data-testid="delete-button"
           />
         </div>
