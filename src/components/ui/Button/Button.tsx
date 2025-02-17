@@ -1,6 +1,5 @@
 import { FC } from "react";
-
-import { cn } from "../../utils";
+import { cn } from "../../../utils";
 
 interface IconButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {

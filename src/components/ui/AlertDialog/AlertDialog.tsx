@@ -1,6 +1,6 @@
 import { FC } from "react";
-import IconButton from "../Button";
 import { LuCheck, LuX } from "react-icons/lu";
+import IconButton from "../Button/Button";
 
 interface AlertDialogProps {
   isOpen: boolean;
@@ -23,7 +23,10 @@ const AlertDialog: FC<AlertDialogProps> = ({
     <>
       <div className="fixed inset-0 bg-black opacity-80 z-40" />
 
-      <div className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-md bg-white rounded-lg p-6 z-50">
+      <div
+        className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-md bg-white rounded-lg p-6 z-50"
+        data-testid="alert-dialog"
+      >
         <h2 className="text-lg font-semibold text-gray-900 mb-2">{title}</h2>
 
         <p className="text-sm text-gray-500 mb-6">{description}</p>
@@ -34,12 +37,14 @@ const AlertDialog: FC<AlertDialogProps> = ({
             onClick={onCancel}
             variant="delete"
             className="p-3 text-xl"
+            data-testid="alert-dialog-cancel-button"
           />
           <IconButton
             icon={<LuCheck />}
             onClick={onConfirm}
             variant="submit"
             className="p-3 text-xl"
+            data-testid="alert-dialog-confirm-button"
           />
         </div>
       </div>

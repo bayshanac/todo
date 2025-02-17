@@ -2,21 +2,21 @@ import { useAtom } from "jotai";
 import { FC, useCallback, useState } from "react";
 import { LuCircleCheckBig, LuCirclePlus, LuCircleX } from "react-icons/lu";
 
-import { editIdAtom } from "../../atoms/editIdAtom";
-import { todosAtom } from "../../atoms/todosAtom";
-import { useKeyPress } from "../../hooks/useKeyPress";
-import { cn } from "../../utils";
-import IconButton from "../Button";
-import Input from "../Input";
+import { editIdAtom } from "../../../atoms/editIdAtom";
+import { todosAtom } from "../../../atoms/todosAtom";
+import { useKeyPress } from "../../../hooks/useKeyPress";
+import { cn } from "../../../utils";
+import IconButton from "../../ui/Button/Button";
+import Input from "../../ui/Input/Input";
 
-interface TodoFormProps {
+interface FormProps {
   inputValue: string;
   setInputValue: React.Dispatch<React.SetStateAction<string>>;
   inputRef: React.RefObject<HTMLInputElement | null>;
   className?: string;
 }
 
-const TodoForm: FC<TodoFormProps> = ({
+const Form: FC<FormProps> = ({
   inputValue,
   setInputValue,
   inputRef,
@@ -68,6 +68,7 @@ const TodoForm: FC<TodoFormProps> = ({
           inputValue={inputValue}
           setInputValue={setInputValue}
           placeholder="Add a new todo..."
+          data-testid="input-field"
         />
 
         <IconButton
@@ -75,6 +76,7 @@ const TodoForm: FC<TodoFormProps> = ({
           icon={editId !== null ? <LuCircleCheckBig /> : <LuCirclePlus />}
           variant="submit"
           disabled={!inputValue.trim()}
+          data-testid="submit-button"
         />
         {editId ? (
           <IconButton
@@ -89,4 +91,4 @@ const TodoForm: FC<TodoFormProps> = ({
   );
 };
 
-export default TodoForm;
+export default Form;

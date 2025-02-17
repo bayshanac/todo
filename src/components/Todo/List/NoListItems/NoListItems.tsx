@@ -1,13 +1,13 @@
 import { FC } from "react";
 import { PiMagnifyingGlassMinusBold } from "react-icons/pi";
 
-import { cn } from "../../../utils";
+import { cn } from "../../../../utils";
 
-interface NoTodoItemProps {
+interface NoListItemsProps {
   className?: string;
 }
 
-const NoTodoItem: FC<NoTodoItemProps> = ({ className }) => {
+const NoListItems: FC<NoListItemsProps> = ({ className }) => {
   return (
     <div className={cn("flex items-center gap-2", className)}>
       <PiMagnifyingGlassMinusBold className="text-gray-500" size={24} />
@@ -16,4 +16,4 @@ const NoTodoItem: FC<NoTodoItemProps> = ({ className }) => {
   );
 };
 
-export default NoTodoItem;
+export default NoListItems;

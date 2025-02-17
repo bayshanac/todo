@@ -4,9 +4,9 @@ import filterAtom from "../../../atoms/filterAtom";
 import { Filter as FilterType, FilterEnum } from "../../../types/filter.types";
 import RadioButtonGroup, {
   RadioButtonGroupOption,
-} from "../../RadioButtonGroup";
+} from "../../ui/RadioButtonGroup/RadioButtonGroup";
 
-const options: RadioButtonGroupOption[] = Object.values(FilterEnum).map(
+const FILTER_OPTIONS: RadioButtonGroupOption[] = Object.values(FilterEnum).map(
   (value) => ({
     id: value,
     label: value,
@@ -17,7 +17,7 @@ const Filter = () => {
   const [filter, setFilter] = useAtom(filterAtom);
   return (
     <RadioButtonGroup
-      options={options}
+      options={FILTER_OPTIONS}
       value={filter}
       name="filter"
       onChange={(value) => setFilter(value as FilterType)}

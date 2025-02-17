@@ -1,28 +1,26 @@
 import { useRef, useState } from "react";
 
-import AppWrapper from "../AppWrapper";
-import TodoForm from "./TodoForm";
-import TodoList from "./TodoList";
-import TodoTitle from "./TodoTitle";
-import Filter from "./Filter";
+import AppWrapper from "../AppWrapper/AppWrapper";
+import Filter from "./Filter/Filter";
+import Form from "./Form/Form";
+import Title from "./Header/Header";
+import List from "./List/List";
+
 const TodoApp = () => {
   const [inputValue, setInputValue] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
 
   return (
     <AppWrapper>
-      <TodoTitle title="Todo List" description="Add and manage your todos." />
-
-      <TodoForm
+      <Title title="Todo List" description="Add and manage your todos." />
+      <Form
         inputValue={inputValue}
         setInputValue={setInputValue}
         inputRef={inputRef}
         className="mb-6"
       />
-
       <Filter />
-
-      <TodoList setInputValue={setInputValue} inputRef={inputRef} />
+      <List setInputValue={setInputValue} inputRef={inputRef} />
     </AppWrapper>
   );
 };

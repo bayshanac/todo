@@ -2,19 +2,19 @@ import { useAtom, useAtomValue } from "jotai";
 import { FC, useCallback, useState } from "react";
 import { LuPencil, LuTrash2 } from "react-icons/lu";
 
-import { editIdAtom } from "../../../atoms/editIdAtom";
-import { todosAtom } from "../../../atoms/todosAtom";
-import { Todo } from "../../../types/todo.types";
-import { cn } from "../../../utils";
-import AlertDialog from "../../AlertDialog";
-import IconButton from "../../Button";
+import { editIdAtom } from "../../../../atoms/editIdAtom";
+import { todosAtom } from "../../../../atoms/todosAtom";
+import { Todo } from "../../../../types/todo.types";
+import { cn } from "../../../../utils";
+import AlertDialog from "../../../ui/AlertDialog/AlertDialog";
+import IconButton from "../../../ui/Button/Button";
 
-interface TodoListItemProps {
+interface ListItemProps {
   todo: Todo;
   handleEdit: (id: number, text: string) => void;
 }
 
-const TodoListItem: FC<TodoListItemProps> = ({ todo, handleEdit }) => {
+const ListItem: FC<ListItemProps> = ({ todo, handleEdit }) => {
   const [todos, setTodos] = useAtom(todosAtom);
   const [isOpen, setIsOpen] = useState(false);
   const editId = useAtomValue(editIdAtom);
@@ -44,9 +44,9 @@ const TodoListItem: FC<TodoListItemProps> = ({ todo, handleEdit }) => {
     <>
       <div
         className={cn(
-          "flex items-center justify-between content-stretch px-4 py-3 mb-2 bg-white hover:bg-gray-50 rounded-lg shadow",
+          "flex items-center justify-between content-stretch px-4 py-3 mb-2 bg-white hover:bg-gray-50 rounded-lg shadow-md",
           {
-            "bg-gray-200 hover:bg-gray-200": todo.done,
+            "bg-gray-100 hover:bg-gray-100 shadow-xs": todo.done,
             "opacity-60": isEditing,
           }
         )}
@@ -78,12 +78,14 @@ const TodoListItem: FC<TodoListItemProps> = ({ todo, handleEdit }) => {
             icon={<LuPencil />}
             onClick={() => handleEdit(todo.id, todo.text)}
             {...((todo.done || isEditing) && { disabled: true })}
+            data-testid="edit-button"
           />
           <IconButton
             icon={<LuTrash2 />}
             onClick={() => setIsOpen(true)}
             {...(isEditing && { disabled: true })}
             variant="danger"
+            data-testid="delete-button"
           />
         </div>
       </div>
@@ -98,4 +100,4 @@ const TodoListItem: FC<TodoListItemProps> = ({ todo, handleEdit }) => {
   );
 };
 
-export default TodoListItem;
+export default ListItem;

@@ -4,16 +4,16 @@ import { useCallback, useMemo } from "react";
 import { editIdAtom } from "../../../atoms/editIdAtom";
 import filterAtom from "../../../atoms/filterAtom";
 import { todosAtom } from "../../../atoms/todosAtom";
-import TodoListItem from "./TodoListItem";
 import { FilterEnum } from "../../../types/filter.types";
-import NoTodoItem from "./NoTodoItem";
+import ListItem from "./ListItem/ListItem";
+import NoListItems from "./NoListItems/NoListItems";
 
-interface TodoListProps {
+interface ListProps {
   setInputValue: React.Dispatch<React.SetStateAction<string>>;
   inputRef: React.RefObject<HTMLInputElement | null>;
 }
 
-const TodoList = ({ setInputValue, inputRef }: TodoListProps) => {
+const List = ({ setInputValue, inputRef }: ListProps) => {
   const todos = useAtomValue(todosAtom);
   const setEditId = useSetAtom(editIdAtom);
   const filter = useAtomValue(filterAtom);
@@ -35,16 +35,16 @@ const TodoList = ({ setInputValue, inputRef }: TodoListProps) => {
   }, [todos, filter]);
 
   if (!filteredTodos?.length) {
-    return <NoTodoItem className="mt-8" />;
+    return <NoListItems className="mt-8" />;
   }
 
   return (
     <div className="w-full">
       {filteredTodos?.map((todo) => (
-        <TodoListItem key={todo.id} todo={todo} handleEdit={handleEdit} />
+        <ListItem key={todo.id} todo={todo} handleEdit={handleEdit} />
       ))}
     </div>
   );
 };
 
-export default TodoList;
+export default List;
