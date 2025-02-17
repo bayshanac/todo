@@ -1,12 +1,13 @@
 import { Provider, WritableAtom } from "jotai";
 import { useHydrateAtoms } from "jotai/utils";
+import { MemoryRouter } from "react-router";
 import { beforeEach, describe, expect, it } from "vitest";
 
 import { fireEvent, render, screen } from "@testing-library/react";
 
 import { todosAtom } from "../../atoms/todosAtom";
-import TodoApp from "./TodoApp";
 import { Todo } from "../../types/todo.types";
+import TodoApp from "./TodoApp";
 
 function addTodo(todoText: string) {
   const inputElement = screen.getByTestId("input-field");
@@ -46,9 +47,11 @@ const TestProvider = ({
 // TodoProvider is a component that wraps the TodoApp component with the TestProvider component
 const TodoProvider = () => {
   return (
-    <TestProvider initialValues={[todosAtom, []]}>
-      <TodoApp />
-    </TestProvider>
+    <MemoryRouter>
+      <TestProvider initialValues={[todosAtom, []]}>
+        <TodoApp />
+      </TestProvider>
+    </MemoryRouter>
   );
 };
 
