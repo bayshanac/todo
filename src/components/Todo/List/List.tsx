@@ -1,10 +1,14 @@
 import { useAtomValue, useSetAtom } from "jotai";
 import { useCallback, useMemo } from "react";
 
+import { DndContext } from "@dnd-kit/core";
+import { SortableContext } from "@dnd-kit/sortable";
+
 import { editIdAtom } from "../../../atoms/editIdAtom";
 import filterAtom from "../../../atoms/filterAtom";
 import { todosAtom } from "../../../atoms/todosAtom";
-import { FilterEnum } from "../../../types/filter.types";
+import useDnd from "../../../hooks/useDnd";
+import { filterTodos } from "../../../utils";
 import ListItem from "./ListItem/ListItem";
 import NoListItems from "./NoListItems/NoListItems";
 
@@ -17,6 +21,7 @@ const List = ({ setInputValue, inputRef }: ListProps) => {
   const todos = useAtomValue(todosAtom);
   const setEditId = useSetAtom(editIdAtom);
   const filter = useAtomValue(filterAtom);
+  const { sensors, handleDragEnd } = useDnd();
 
   const handleEdit = useCallback(
     (id: number, text: string) => {
@@ -27,12 +32,10 @@ const List = ({ setInputValue, inputRef }: ListProps) => {
     [setEditId, setInputValue, inputRef]
   );
 
-  const filteredTodos = useMemo(() => {
-    if (filter === FilterEnum.ALL) return todos;
-    if (filter === FilterEnum.ACTIVE) return todos.filter((todo) => !todo.done);
-    if (filter === FilterEnum.COMPLETED)
-      return todos.filter((todo) => todo.done);
-  }, [todos, filter]);
+  const filteredTodos = useMemo(
+    () => filterTodos(todos, filter),
+    [todos, filter]
+  );
 
   if (!filteredTodos?.length) {
     return <NoListItems className="mt-8" />;
@@ -40,9 +43,13 @@ const List = ({ setInputValue, inputRef }: ListProps) => {
 
   return (
     <div className="w-full">
-      {filteredTodos?.map((todo) => (
-        <ListItem key={todo.id} todo={todo} handleEdit={handleEdit} />
-      ))}
+      <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
+        <SortableContext items={filteredTodos}>
+          {filteredTodos?.map((todo) => (
+            <ListItem key={todo.id} todo={todo} handleEdit={handleEdit} />
+          ))}
+        </SortableContext>
+      </DndContext>
     </div>
   );
 };

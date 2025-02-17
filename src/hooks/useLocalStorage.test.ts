@@ -51,14 +51,16 @@ describe("useLocalStorage", () => {
   });
 
   it("should work with complex objects", () => {
-    const defaultValue: Todo[] = [{ id: 1, text: "test", done: false }];
+    const defaultValue: Todo[] = [
+      { id: 1, text: "test", done: false, order: 0 },
+    ];
     const { result } = renderHook(() =>
       useLocalStorage("testKey", defaultValue)
     );
 
     expect(result.current[0]).toEqual(defaultValue);
 
-    const newValue: Todo[] = [{ id: 1, text: "updated", done: true }];
+    const newValue: Todo[] = [{ id: 1, text: "updated", done: true, order: 0 }];
     act(() => {
       result.current[1](newValue);
     });

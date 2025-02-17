@@ -41,7 +41,15 @@ const Form: FC<FormProps> = ({
         );
         setEditId(null);
       } else {
-        setTodos([...todos, { id: Date.now(), text: inputValue, done: false }]);
+        setTodos([
+          ...todos,
+          {
+            id: Date.now(),
+            text: inputValue,
+            done: false,
+            order: todos.length,
+          },
+        ]);
       }
       setInputValue("");
       inputRef?.current?.focus();

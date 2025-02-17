@@ -36,7 +36,12 @@ const LoginForm = () => {
         setInputValue={setPassword}
       />
 
-      <Button type="submit" size="lg" icon={<LuLogIn />}>
+      <Button
+        type="submit"
+        size="lg"
+        icon={<LuLogIn />}
+        className="text-md min-h-14"
+      >
         Login
       </Button>
     </form>

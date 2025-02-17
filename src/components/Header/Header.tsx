@@ -15,13 +15,13 @@ const Header: FC<HeaderProps> = ({ title, description }) => {
   return (
     <div
       className={cn("grid gap-4 p-6 mb-6 rounded-md bg-gray-700", {
-        "md:grid-cols-2": isLoggedIn,
+        "grid-cols-2": isLoggedIn,
       })}
     >
       <div className="flex flex-col">
         <h1 className="text-3xl leading-8 font-semibold text-white">{title}</h1>
         {description ? (
-          <p className="text-gray-300 text-sm">{description}</p>
+          <p className="text-gray-300 text-sm hidden sm:block">{description}</p>
         ) : null}
       </div>
       {isLoggedIn ? (
@@ -30,7 +30,7 @@ const Header: FC<HeaderProps> = ({ title, description }) => {
             icon={<LuLogOut />}
             onClick={logout}
             variant="default"
-            className="max-w-fit text-md py-2 px-4 self-start md:ml-auto"
+            className="max-w-fit text-md py-2 px-4 self-start ml-auto"
           >
             Logout
           </Button>

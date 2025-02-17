@@ -2,6 +2,9 @@ import { useAtom, useAtomValue } from "jotai";
 import { FC, useCallback, useState } from "react";
 import { LuPencil, LuTrash2 } from "react-icons/lu";
 
+import { useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
+
 import { editIdAtom } from "../../../../atoms/editIdAtom";
 import { todosAtom } from "../../../../atoms/todosAtom";
 import { Todo } from "../../../../types/todo.types";
@@ -19,6 +22,9 @@ const ListItem: FC<ListItemProps> = ({ todo, handleEdit }) => {
   const [isOpen, setIsOpen] = useState(false);
   const editId = useAtomValue(editIdAtom);
   const isEditing = editId === todo.id;
+
+  const { attributes, listeners, setNodeRef, transition, transform } =
+    useSortable({ id: todo.id });
 
   const handleToggleDone = useCallback(
     (id: number) => {
@@ -40,9 +46,18 @@ const ListItem: FC<ListItemProps> = ({ todo, handleEdit }) => {
     [isEditing, setTodos, todos]
   );
 
+  const style = {
+    transition,
+    transform: CSS.Transform.toString(transform),
+  };
+
   return (
     <>
       <div
+        ref={setNodeRef}
+        style={style}
+        {...attributes}
+        {...listeners}
         className={cn(
           "flex items-center justify-between content-stretch px-4 py-3 mb-2 bg-white hover:bg-gray-50 rounded-lg shadow-md",
           {
