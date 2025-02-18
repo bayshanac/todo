@@ -1,9 +1,8 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
+import useLocalStorage from "@hooks/useLocalStorage";
+import { Todo } from "@models/todo.types";
 import { act, renderHook } from "@testing-library/react";
-
-import { Todo } from "../types/todo.types";
-import useLocalStorage from "./useLocalStorage";
 
 describe("useLocalStorage", () => {
   const mockStorage: { [key: string]: string } = {};

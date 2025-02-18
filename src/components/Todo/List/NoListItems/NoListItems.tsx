@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { PiMagnifyingGlassMinusBold } from "react-icons/pi";
 
-import { cn } from "../../../../utils";
+import { cn } from "@utils/cn";
 
 interface NoListItemsProps {
   className?: string;

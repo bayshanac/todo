@@ -5,9 +5,9 @@ import { beforeEach, describe, expect, it } from "vitest";
 
 import { fireEvent, render, screen } from "@testing-library/react";
 
-import { todosAtom } from "../../atoms/todosAtom";
-import { Todo } from "../../types/todo.types";
-import TodoApp from "./TodoApp";
+import { todosAtom } from "@atoms/todosAtom";
+import { Todo } from "@models/todo.types";
+import TodoApp from "@components/Todo/TodoApp";
 
 function addTodo(todoText: string) {
   const inputElement = screen.getByTestId("input-field");

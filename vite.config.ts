@@ -11,5 +11,15 @@ export default defineConfig(
       environment: "jsdom",
       setupFiles: "./src/test/setup.ts",
     },
+    resolve: {
+      alias: {
+        "@utils": "/src/utils",
+        "@atoms": "/src/atoms",
+        "@components": "/src/components",
+        "@hooks": "/src/hooks",
+        "@models": "/src/models",
+        "@pages": "/src/pages",
+      },
+    },
   })
 );

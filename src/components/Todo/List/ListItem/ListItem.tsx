@@ -2,15 +2,14 @@ import { useAtom, useAtomValue } from "jotai";
 import { FC, useCallback, useState } from "react";
 import { LuPencil, LuTrash2 } from "react-icons/lu";
 
+import { editIdAtom } from "@atoms/editIdAtom";
+import { todosAtom } from "@atoms/todosAtom";
+import AlertDialog from "@components/ui/AlertDialog/AlertDialog";
+import IconButton from "@components/ui/Button/Button";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-
-import { editIdAtom } from "../../../../atoms/editIdAtom";
-import { todosAtom } from "../../../../atoms/todosAtom";
-import { Todo } from "../../../../types/todo.types";
-import { cn } from "../../../../utils";
-import AlertDialog from "../../../ui/AlertDialog/AlertDialog";
-import IconButton from "../../../ui/Button/Button";
+import { Todo } from "@models/todo.types";
+import { cn } from "@utils/cn";
 
 interface ListItemProps {
   todo: Todo;

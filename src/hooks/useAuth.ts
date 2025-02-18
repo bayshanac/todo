@@ -2,15 +2,17 @@ import { useAtom } from "jotai";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 
-import { authAtom, DEFAULT_AUTH_STATE } from "../atoms/authAtom";
-import useLocalStorage from "./useLocalStorage";
+import { authAtom, DEFAULT_AUTH_STATE } from "@atoms/authAtom";
+import useLocalStorage from "@hooks/useLocalStorage";
 
 const AUTH_STORAGE_KEY = "auth";
 
 export default function useAuth() {
   const [authState, setAuthState] = useAtom(authAtom);
+
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
   const [localStorageValue, setLocalStorageStateValue] = useLocalStorage(
     AUTH_STORAGE_KEY,
     DEFAULT_AUTH_STATE

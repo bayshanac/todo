@@ -1,17 +1,17 @@
 import { useAtom } from "jotai";
 
-import filterAtom from "../../../atoms/filterAtom";
-import { Filter as FilterType, FilterEnum } from "../../../types/filter.types";
+import filterAtom from "@atoms/filterAtom";
+import { Filter as FilterType, FILTER_VALUES } from "@models/filter.types";
 import RadioButtonGroup, {
   RadioButtonGroupOption,
-} from "../../ui/RadioButtonGroup/RadioButtonGroup";
+} from "@components/ui/RadioButtonGroup/RadioButtonGroup";
 
-const FILTER_OPTIONS: RadioButtonGroupOption[] = Object.values(FilterEnum).map(
-  (value) => ({
-    id: value,
-    label: value,
-  })
-);
+const FILTER_OPTIONS: RadioButtonGroupOption[] = Object.values(
+  FILTER_VALUES
+).map((value) => ({
+  id: value,
+  label: value,
+}));
 
 const Filter = () => {
   const [filter, setFilter] = useAtom(filterAtom);

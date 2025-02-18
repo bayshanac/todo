@@ -1,6 +1,6 @@
 import { FC } from "react";
 import RadioButton from "./RadioButton/RadioButton";
-import { cn } from "../../../utils";
+import { cn } from "@utils/cn";
 
 export type RadioButtonGroupOption = {
   id: string;

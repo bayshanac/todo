@@ -1,6 +1,6 @@
 import { useAtom } from "jotai";
 
-import { todosAtom } from "../atoms/todosAtom";
+import { todosAtom } from "@atoms/todosAtom";
 import { useCallback } from "react";
 import {
   DragEndEvent,

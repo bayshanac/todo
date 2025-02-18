@@ -2,12 +2,12 @@ import { useAtom } from "jotai";
 import { FC, useCallback } from "react";
 import { LuCircleCheckBig, LuCirclePlus, LuCircleX } from "react-icons/lu";
 
-import { editIdAtom } from "../../../atoms/editIdAtom";
-import { todosAtom } from "../../../atoms/todosAtom";
-import { useKeyPress } from "../../../hooks/useKeyPress";
-import { cn } from "../../../utils";
-import IconButton from "../../ui/Button/Button";
-import Input from "../../ui/Input/Input";
+import { editIdAtom } from "@atoms/editIdAtom";
+import { todosAtom } from "@atoms/todosAtom";
+import { useKeyPress } from "@hooks/useKeyPress";
+import { cn } from "@utils/cn";
+import IconButton from "@components/ui/Button/Button";
+import Input from "@components/ui/Input/Input";
 
 interface FormProps {
   inputValue: string;

@@ -1,6 +1,5 @@
+import { Todo } from "@models/todo.types";
 import { Atom, atom, WritableAtom } from "jotai";
-
-import { Todo } from "../types/todo.types";
 
 const TODOS_STORAGE_KEY = "todos";
 

@@ -3,14 +3,14 @@ import { useCallback, useMemo } from "react";
 
 import { DndContext } from "@dnd-kit/core";
 import { SortableContext } from "@dnd-kit/sortable";
+import { filterTodos } from "@utils/filterTodos";
 
-import { editIdAtom } from "../../../atoms/editIdAtom";
-import filterAtom from "../../../atoms/filterAtom";
-import { todosAtom } from "../../../atoms/todosAtom";
-import useDnd from "../../../hooks/useDnd";
-import { filterTodos } from "../../../utils";
-import ListItem from "./ListItem/ListItem";
-import NoListItems from "./NoListItems/NoListItems";
+import { editIdAtom } from "@atoms/editIdAtom";
+import filterAtom from "@atoms/filterAtom";
+import { todosAtom } from "@atoms/todosAtom";
+import useDnd from "@hooks/useDnd";
+import NoListItems from "@components/Todo/List/NoListItems/NoListItems";
+import ListItem from "@components/Todo/List/ListItem/ListItem";
 
 interface ListProps {
   setInputValue: React.Dispatch<React.SetStateAction<string>>;

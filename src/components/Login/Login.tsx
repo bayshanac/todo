@@ -1,6 +1,6 @@
-import AppWrapper from "../AppWrapper/AppWrapper";
-import Header from "../Header/Header";
-import LoginForm from "./LoginForm/LoginForm";
+import AppWrapper from "@components/AppWrapper/AppWrapper";
+import Header from "@components/Header/Header";
+import LoginForm from "@components/Login/LoginForm/LoginForm";
 
 const Login = () => {
   return (

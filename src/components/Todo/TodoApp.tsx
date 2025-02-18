@@ -1,10 +1,10 @@
 import { useRef, useState } from "react";
 
-import AppWrapper from "../AppWrapper/AppWrapper";
-import Filter from "./Filter/Filter";
-import Form from "./Form/Form";
-import Header from "../Header/Header";
-import List from "./List/List";
+import AppWrapper from "@components/AppWrapper/AppWrapper";
+import Filter from "@components/Todo/Filter/Filter";
+import Form from "@components/Todo/Form/Form";
+import Header from "@components/Header/Header";
+import List from "@components/Todo/List/List";
 
 const TodoApp = () => {
   const [inputValue, setInputValue] = useState("");

@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { LuLogIn } from "react-icons/lu";
 
-import useAuth from "../../../hooks/useAuth";
-import Button from "../../ui/Button/Button";
-import ErrorWarning from "../../ui/ErrorWarning/ErrorWarning";
-import Input from "../../ui/Input/Input";
+import useAuth from "@hooks/useAuth";
+import Button from "@components/ui/Button/Button";
+import ErrorWarning from "@components/ui/ErrorWarning/ErrorWarning";
+import Input from "@components/ui/Input/Input";
 
 const LoginForm = () => {
   const [username, setUsername] = useState("");

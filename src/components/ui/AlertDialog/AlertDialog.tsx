@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { LuCheck, LuX } from "react-icons/lu";
-import IconButton from "../Button/Button";
+import IconButton from "@components/ui/Button/Button";
 
 interface AlertDialogProps {
   isOpen: boolean;
