@@ -19,7 +19,13 @@ const LoginForm = () => {
     <form className="w-full flex flex-col gap-4" onSubmit={handleSubmit}>
       {error ? <ErrorWarning message={error} /> : null}
       <Input label="Username" name="username" placeholder="Username" required />
-      <Input label="Password" name="password" placeholder="Password" required />
+      <Input
+        label="Password"
+        name="password"
+        type="password"
+        placeholder="Password"
+        required
+      />
       <Button
         type="submit"
         size="lg"
