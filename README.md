@@ -1,11 +1,11 @@
-# React Todo Application
+# React To-do Application
 
-A modern todo application built with React, TypeScript, and Vite.
+A modern to-do application built with React, TypeScript, and Vite.
 
 ## Prerequisites
 
 - Node.js (v18 or higher)
-- npm or yarn
+- npm
 
 ## Getting Started
 
@@ -22,13 +22,7 @@ cd todo
 npm install
 ```
 
-3. Create a `.env` file in the root directory and add necessary environment variables:
-
-```bash
-VITE_API_URL=your_api_url_here
-```
-
-4. Start the development server:
+3. Start the development server:
 
 ```bash
 npm run dev
@@ -49,21 +43,25 @@ The application will be available at `http://localhost:5173`
 - React 19
 - TypeScript
 - Vite
-- ESLint
+- React Router
 - Jotai
+- Vitest
+- React Testing Library
 - TailwindCSS
 - React Icons
+- Dnd Kit
+- ESLint
 
 ## Project Structure
 
 ```
 src/
-  ├── components/   # Reusable UI components
   ├── atoms/        # State management
-  ├── types/        # TypeScript types
-  ├── utils/        # Utility functions
-  ├── assets/       # Assets
-  └── hooks/        # Custom hooks
+  ├── components/   # Reusable UI components
+  ├── hooks/        # Custom hooks
+  ├── models/       # TypeScript types & interfaces
+  ├── pages/        # Pages
+  └── utils/        # Utility functions
 ```
 
 ## License

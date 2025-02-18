@@ -12,7 +12,7 @@ const TodoApp = () => {
 
   return (
     <AppWrapper>
-      <Header title="Todo List" description="Add and manage your todos." />
+      <Header title="To-do List" description="Add and manage your todos." />
       <Form
         inputValue={inputValue}
         setInputValue={setInputValue}
