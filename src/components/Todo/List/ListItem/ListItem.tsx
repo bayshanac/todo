@@ -1,11 +1,11 @@
 import { useAtom, useAtomValue } from "jotai";
 import { FC, useCallback, useState } from "react";
 import { LuPencil, LuTrash2 } from "react-icons/lu";
+import { MdDragIndicator } from "react-icons/md";
 
 import { editIdAtom } from "@atoms/editIdAtom";
 import { todosAtom } from "@atoms/todosAtom";
-import AlertDialog from "@components/ui/AlertDialog/AlertDialog";
-import IconButton from "@components/ui/Button/Button";
+import { AlertDialog, Button as IconButton } from "@components/ui";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { Todo } from "@models/todo.types";
@@ -104,6 +104,7 @@ const ListItem: FC<ListItemProps> = ({ todo, handleEdit }) => {
             className="text-red-500 hover:text-red-800"
             data-testid="delete-button"
           />
+          <MdDragIndicator className="text-gray-500 cursor-move self-center" />
         </div>
       </div>
       <AlertDialog

@@ -4,7 +4,7 @@ import AppWrapper from "@components/AppWrapper/AppWrapper";
 import Filter from "@components/Todo/Filter/Filter";
 import Form from "@components/Todo/Form/Form";
 import Header from "@components/Header/Header";
-import List from "@components/Todo/List/List";
+import { List } from "@components/Todo/List";
 
 const TodoApp = () => {
   const [inputValue, setInputValue] = useState("");

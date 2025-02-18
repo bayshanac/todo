@@ -1,10 +1,9 @@
 import { useAtom } from "jotai";
 
 import filterAtom from "@atoms/filterAtom";
+import { RadioButtonGroup } from "@components/ui";
 import { Filter as FilterType, FILTER_VALUES } from "@models/filter.types";
-import RadioButtonGroup, {
-  RadioButtonGroupOption,
-} from "@components/ui/RadioButtonGroup/RadioButtonGroup";
+import { RadioButtonGroupOption } from "@models/radioButton.types";
 
 const FILTER_OPTIONS: RadioButtonGroupOption[] = Object.values(
   FILTER_VALUES

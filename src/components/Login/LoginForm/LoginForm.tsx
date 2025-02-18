@@ -1,41 +1,25 @@
-import { useState } from "react";
 import { LuLogIn } from "react-icons/lu";
 
 import useAuth from "@hooks/useAuth";
-import Button from "@components/ui/Button/Button";
-import ErrorWarning from "@components/ui/ErrorWarning/ErrorWarning";
-import Input from "@components/ui/Input/Input";
+import { Button, ErrorWarning, Input } from "@components/ui";
 
 const LoginForm = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-
   const { login, error } = useAuth();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    login(username.trim(), password.trim());
+    const formData = new FormData(e.currentTarget);
+    login(
+      formData.get("username")?.toString().trim() ?? "",
+      formData.get("password")?.toString().trim() ?? ""
+    );
   };
 
   return (
     <form className="w-full flex flex-col gap-4" onSubmit={handleSubmit}>
       {error ? <ErrorWarning message={error} /> : null}
-      <Input
-        label="Username"
-        name="username"
-        placeholder="Username"
-        required
-        setInputValue={setUsername}
-      />
-
-      <Input
-        label="Password"
-        name="password"
-        placeholder="Password"
-        required
-        setInputValue={setPassword}
-      />
-
+      <Input label="Username" name="username" placeholder="Username" required />
+      <Input label="Password" name="password" placeholder="Password" required />
       <Button
         type="submit"
         size="lg"

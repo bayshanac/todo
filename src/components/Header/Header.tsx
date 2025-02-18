@@ -2,7 +2,7 @@ import { FC } from "react";
 import { LuLogOut } from "react-icons/lu";
 
 import useAuth from "@hooks/useAuth";
-import Button from "@components/ui/Button/Button";
+import { Button } from "@components/ui";
 import { cn } from "@utils/cn";
 
 interface HeaderProps {

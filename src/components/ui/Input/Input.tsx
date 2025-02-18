@@ -2,7 +2,7 @@ import { FC } from "react";
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
-  setInputValue: (value: string) => void;
+  setInputValue?: (value: string) => void;
   ref?: React.RefObject<HTMLInputElement | null>;
 }
 
@@ -16,7 +16,7 @@ const Input: FC<InputProps> = ({
   ...props
 }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
+    setInputValue?.(e.target.value);
   };
 
   return (
@@ -31,6 +31,7 @@ const Input: FC<InputProps> = ({
         onChange={handleChange}
         className="w-full min-h-14 px-4 py-2 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
         type={type}
+        name={name}
         {...(ref && { ref })}
         {...props}
       />

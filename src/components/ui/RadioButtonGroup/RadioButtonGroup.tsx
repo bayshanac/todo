@@ -1,11 +1,9 @@
 import { FC } from "react";
-import RadioButton from "./RadioButton/RadioButton";
+
+import { RadioButtonGroupOption } from "@models/radioButton.types";
 import { cn } from "@utils/cn";
 
-export type RadioButtonGroupOption = {
-  id: string;
-  label: string;
-};
+import RadioButton from "./RadioButton/RadioButton";
 
 interface RadioButtonGroupProps {
   options: RadioButtonGroupOption[];

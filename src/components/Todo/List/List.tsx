@@ -1,16 +1,14 @@
 import { useAtomValue, useSetAtom } from "jotai";
 import { useCallback, useMemo } from "react";
 
-import { DndContext } from "@dnd-kit/core";
-import { SortableContext } from "@dnd-kit/sortable";
-import { filterTodos } from "@utils/filterTodos";
-
 import { editIdAtom } from "@atoms/editIdAtom";
 import filterAtom from "@atoms/filterAtom";
 import { todosAtom } from "@atoms/todosAtom";
+import { ListItem, NoListItems } from "@components/Todo/List";
+import { DndContext } from "@dnd-kit/core";
+import { SortableContext } from "@dnd-kit/sortable";
 import useDnd from "@hooks/useDnd";
-import NoListItems from "@components/Todo/List/NoListItems/NoListItems";
-import ListItem from "@components/Todo/List/ListItem/ListItem";
+import { filterTodos } from "@utils/filterTodos";
 
 interface ListProps {
   setInputValue: React.Dispatch<React.SetStateAction<string>>;

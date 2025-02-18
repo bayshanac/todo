@@ -4,10 +4,9 @@ import { LuCircleCheckBig, LuCirclePlus, LuCircleX } from "react-icons/lu";
 
 import { editIdAtom } from "@atoms/editIdAtom";
 import { todosAtom } from "@atoms/todosAtom";
+import { Button as IconButton, Input } from "@components/ui";
 import { useKeyPress } from "@hooks/useKeyPress";
 import { cn } from "@utils/cn";
-import IconButton from "@components/ui/Button/Button";
-import Input from "@components/ui/Input/Input";
 
 interface FormProps {
   inputValue: string;
